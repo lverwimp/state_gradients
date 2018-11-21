@@ -35,13 +35,13 @@ You can download them here:
 # Your own experiments
 
 * First train your own language model (new config file)
- * python main.py --config \<your_own_config\>
+  * python main.py --config \<your_own_config\>
 * Then make a copy the config file for training, and add the following key - value pairs:
- * **grad_interm**: either 'cell' or 'hidden'
- * **time_step**: integer, time step for which you want to print the gradients
- * **max_delay**: integer, maximum delay that you want to consider
- * **grad_dir**: directory where you want to print the gradients
+  * **grad_interm**: either 'cell' or 'hidden'
+  * **time_step**: integer, time step for which you want to print the gradients
+  * **max_delay**: integer, maximum delay that you want to consider
+  * **grad_dir**: directory where you want to print the gradients
 * Additionally, change **batch_size** in the config file to 1 to avoid memory problems
 * Print gradients for the validation set:
- * python main.py --config \<config_for_gradients\> --notrain --notest
+  * python main.py --config \<config_for_gradients\> --notrain --notest
 
