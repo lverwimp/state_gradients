@@ -29,8 +29,20 @@ You can download them here:
   * [Training set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_train.txt)
   * [Validation set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_valid.txt)
   * [Test set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_test.txt)
-  
+    
 ## Training
+
+Make sure that you put the PTB files in the directory specified by **data_path** in the config file.
+
+* Train the baseline language model with the following command:
+  * python main.py --config ../config/ptb-norm-wsj_64e_256h_steps50.config
+* Print gradients for time step 0 (can be done on CPU):
+  * python main.py --config ../config/ptb-norm-wsj_64e_256h_steps50_grad_timestep0.config --notrain --notest (--device cpu)
+* Make config files for all time steps (make a copy and change value of **time_step**), and run the above command for every time step
+
+!!! Notice that you will need enough disk space, the gradient matrices can easily take up GB's. 
+You can compress them afterwards with the following command:
+* aux_scripts/np2npz.py <gradient_directory>
 
 # Your own experiments
 
