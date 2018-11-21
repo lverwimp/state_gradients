@@ -31,7 +31,7 @@ You can download them here:
   * [Validation set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_valid.txt)
   * [Test set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_test.txt)
     
-## Training
+## Training and calculating gradients
 
 Make sure that you put the PTB files in the directory specified by **data_path** in the config file.
 
@@ -46,6 +46,8 @@ You can compress them afterwards with the following command:
 * aux_scripts/np2npz.py <gradient_directory>
 
 This will create one .npz file, 'all.npz'. Afterwards, you can delete all .npy files.
+
+## Analysis
 
 # Your own experiments
 
