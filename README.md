@@ -7,7 +7,15 @@ It is both a simplified version of [my other GitHub repo](https://github.com/lve
 More information can be found in this paper:
 Lyan Verwimp, Hugo Van hamme, Vincent Renkens and Patrick Wambacq. 2018. [State Gradients for RNN Memory Analysis](https://www.researchgate.net/publication/325818651_State_Gradients_for_RNN_Memory_Analysis). In: *Proceedings Interspeech*. Hyderabad, Inda, 2-6 September 2018, pp. 1467-1471.
 
-# Data
+# Installation and setup
+
+* Python version used: 2.7.5. 
+* Install [TensorFlow](https://www.tensorflow.org/versions/0.6.0/get_started/os_setup.html#download-and-setup). These scripts are compatible with version 1.8.
+* Modify the config files in config/: change the pathnames and optionally the parameters.
+
+# Replicate experiments from the paper
+
+## Data
 
 The data that is used in the paper are Penn TreeBank and Wall Street Journal, normalized to make sure they contain the same vocabulary.
 
@@ -21,5 +29,7 @@ You can download them here:
   * [Training set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_train.txt)
   * [Validation set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_valid.txt)
   * [Test set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_test.txt)
+  
+  
 
 
