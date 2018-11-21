@@ -6,7 +6,7 @@ It is both a simplified version of [my other GitHub repo](https://github.com/lve
 
 More information can be found in this paper:
 
-Lyan Verwimp, Hugo Van hamme, Vincent Renkens and Patrick Wambacq. 2018. [State Gradients for RNN Memory Analysis](https://www.researchgate.net/publication/325818651_State_Gradients_for_RNN_Memory_Analysis). In: *Proceedings Interspeech*. Hyderabad, Inda, 2-6 September 2018, pp. 1467-1471.
+Lyan Verwimp, Hugo Van hamme, Vincent Renkens and Patrick Wambacq. 2018. [State Gradients for RNN Memory Analysis](https://www.researchgate.net/publication/325818651_State_Gradients_for_RNN_Memory_Analysis). In: *Proceedings Interspeech*. Hyderabad, India, 2-6 September 2018, pp. 1467-1471.
 
 # Installation and setup
 
