@@ -33,6 +33,8 @@ You can download them here:
     
 ## Training and calculating gradients
 
+All scripts can be found in tf_scripts/.
+
 Make sure that you put the PTB files in the directory specified by **data_path** in the config file.
 
 * Train the baseline language model with the following command:
