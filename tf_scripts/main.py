@@ -5,27 +5,11 @@ from __future__ import division
 
 import time, os, sys, random, io
 
-# Condor: adapt PYTHONPATH and LD_LIBRARY_PATH
-if 'PYTHONPATH' not in os.environ:
-        if not os.path.isdir('/usr/lib/nvidia') and not os.path.isfile('/usr/lib64/libcuda.so'):
-                os.environ['PYTHONPATH'] = '/users/spraak/spch/prog/spch/tensorflow_cpu-1.4.0/lib/python2.7/site-packages'
-        else:
-                os.environ['PYTHONPATH'] = '/users/spraak/spch/prog/spch/tensorflow-1.4.0/lib/python2.7/site-packages'
-        if 'LD_LIBRARY_PATH' not in os.environ:
-                os.environ['LD_LIBRARY_PATH'] = '/users/spraak/spch/prog/spch/cuda-8.0/lib64:/users/spraak/spch/prog/spch/cuda-9.0/extras/CUPTI/lib64'
-        try:
-                os.system('/usr/bin/python ' + ' '.join(sys.argv))
-                sys.exit(0)
-        except Exception, exc:
-                print('failed executing')
-                sys.exit(1)
-
-
 import numpy as np
 import tensorflow as tf
 
 from writer import writer
-import configuration, lm_data, multiple_lm_data, trainer, lm, run_epoch
+import configuration, lm_data, trainer, lm, run_epoch
 
 print('TensorFlow version: {0}'.format(tf.__version__))
 
