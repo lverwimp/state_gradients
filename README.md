@@ -64,6 +64,7 @@ All scripts can be found in aux_scripts/.
 * Decompose average gradient matrix with Singular Value Decomposition and print top 5 singular values and sum of all singular values (gradients should be averaged):
   * python calculate_svs.py \<gradient_directory\> (\<basename_pos_classes\>)
   * if you want to calculate the singular values for a specific class, add the base name of the \<pos_classes\> file (e.g. nouns)
+* ... I plan to add more scripts in the future.
 
 # Run your own experiments
 
