@@ -49,6 +49,15 @@ This will create one .npz file, 'all.npz'. Afterwards, you can delete all .npy f
 
 ## Analysis
 
+All scripts can be found in aux_scripts/.
+
+* Average gradient matrices over all time steps for specific delay (add 'npz' if the matrices have been compressed):
+  * python avg_gradient_matrix.py \<gradient_directory\> \<delay\> (npz)
+* Average over a specific class of words:
+  * python avg_gradient_matrix.py \<gradient_directory\> \<delay\> \<pos_classes\> \<pos_mapping\> (npz)
+* Decompose average gradient matrix with Singular Value Decomposition and print top 5 singular values and sum of all singular values (gradients should be averaged):
+  * python calculate_svs.py \<gradient_directory\> (\<pos_class\>)
+
 # Your own experiments
 
 * First train your own language model (new config file)
