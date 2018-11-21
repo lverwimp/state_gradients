@@ -43,6 +43,7 @@ Make sure that you put the PTB files in the directory specified by **data_path**
 !!! Notice that you will need enough disk space, the gradient matrices can easily take up GB's. 
 You can compress them afterwards with the following command:
 * aux_scripts/np2npz.py <gradient_directory>
+This will create one .npz file, 'all.npz'. Afterwards, you can delete all .npy files.
 
 # Your own experiments
 
