@@ -221,7 +221,7 @@ class LMData(object):
 			self.item_to_id, self.id_to_item = self.build_vocab(self.train_path)
 
 			# save the item_to_id mapping such that it can be re-used
-			if 'save_dict' in self.config:
+			if 'save_dict' in self.config or 'save_embedding' in self.config:
 				save_item_to_id(self.item_to_id, '{0}.dict'.format(self.config['save_dict']), self.encoding)
 
 		# make a label file to visualize the embeddings

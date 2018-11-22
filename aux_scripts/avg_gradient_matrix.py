@@ -12,9 +12,9 @@ if len(sys.argv) > 3:
     if sys.argv[3] != 'npz':
         raise ValueError("Third argument should be 'npz' if the gradient matrices have been compressed.")
         sys.exit(1)
-    extension = 'npy'
-else:
     extension = 'npz'
+else:
+    extension = 'npy'
 
 list_grads = glob.glob('{0}/timestep_*/delay_{1}/*.{2}'.format(grad_dir, delay, extension))
 

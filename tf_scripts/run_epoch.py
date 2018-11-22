@@ -22,6 +22,13 @@ class run_epoch(object):
 		self.test = test
 		self.valid = valid
 
+		if 'save_embedding' in self.model.config:
+			self.dict = open('{0}.dict'.format(self.model.config['save_embedding']), 'w')
+			self.emb_counter = 0
+
+			if not os.path.exists(self.model.config['save_embedding']):
+				os.makedirs(self.model.config['save_embedding'])
+
 		if 'grad_interm' in self.model.config and self.valid:
 			self.counter_files = 0
 
@@ -44,14 +51,15 @@ class run_epoch(object):
 											'mapping.txt'), 'w'))
 
 	def __call__(self):
-		costs = 0.0 # cross entropy based on normal (LM only) probabilities
-		iters = 0
-
+		costs = 0.0 # cross entropy based on normal (LM only) probabilitiessave_embedding
 		# state = initial state of the model
 		state = self.get_init_state()
 
 		# create fetches dictionary = what we want the graph to return
 		fetches = self.create_fetches()
+
+		if 'save_embedding' in self.model.config:
+			fetches, fetches_save = fetches
 
 		end_reached = False
 
@@ -94,6 +102,13 @@ class run_epoch(object):
 
 			ppl = np.exp(costs / iters)
 
+			if 'save_embedding' in self.model.config and self.test:
+				vals_save = self.session.run(fetches_save, feed_dict)
+				# save embedding of current input word
+				np.save(os.path.join(self.model.config['save_embedding'], str(self.emb_counter)),
+						vals_save['embedding'][vals['input_sample'][0][0]])
+				self.emb_counter += 1
+
 			# if PRINT_INTERMEDIATE is True, ppl and time after each batch is printed
 			# can be changed to only printing after processing a certain amount of data
 			if PRINT_INTERMEDIATE and (iters % (self.model.num_steps*100) == 0):
@@ -114,7 +129,7 @@ class run_epoch(object):
 		'''
 		Initialize to state of previous time step.
 		'''
-
+save_embedding
 		state = vals["final_state"]
 
 		return state
@@ -144,6 +159,11 @@ class run_epoch(object):
 		# _train_op in training phase
 		if self.eval_op is not None:
 			fetches["eval_op"] = self.eval_op
+
+		if 'save_embedding' in self.model.config:
+			fetches_save = {"embedding": self.model.embedding}
+
+			fetches = (fetches, fetches_save)
 
 		if 'grad_interm' in self.model.config and self.valid:
 			fetches["all_grads"] = self.model.all_grads
