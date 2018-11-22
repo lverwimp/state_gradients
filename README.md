@@ -6,7 +6,7 @@ It is both a simplified version of [my other GitHub repo](https://github.com/lve
 
 More information can be found in this paper:
 
-Lyan Verwimp, Hugo Van hamme, Vincent Renkens and Patrick Wambacq. 2018. [State Gradients for RNN Memory Analysis](https://www.researchgate.net/publication/325818651_State_Gradients_for_RNN_Memory_Analysis). In: *Proceedings Interspeech*. Hyderabad, Inda, 2-6 September 2018, pp. 1467-1471.
+Lyan Verwimp, Hugo Van hamme, Vincent Renkens and Patrick Wambacq. 2018. [State Gradients for RNN Memory Analysis](https://www.researchgate.net/publication/325818651_State_Gradients_for_RNN_Memory_Analysis). In: *Proceedings Interspeech*. Hyderabad, India, 2-6 September 2018, pp. 1467-1471.
 
 # Installation and setup
 
@@ -26,6 +26,7 @@ You can download them here:
   * [Training set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_train.txt)
   * [Validation set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_valid.txt)
   * [Test set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_test.txt)
+  * [Mapping from words to possible POS tags](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_words+pos.txt)
 * Wall Street Journal:
   * [Training set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_train.txt)
   * [Validation set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_valid.txt)
@@ -53,12 +54,17 @@ This will create one .npz file, 'all.npz'. Afterwards, you can delete all .npy f
 
 All scripts can be found in aux_scripts/.
 
-* Average gradient matrices over all time steps for specific delay (add 'npz' if the matrices have been compressed):
+* Average gradient matrices over all time steps for specific delay:
   * python avg_gradient_matrix.py \<gradient_directory\> \<delay\> (npz)
+  * add 'npz' if the matrices have been compressed
 * Average over a specific class of words:
   * python avg_gradient_matrix.py \<gradient_directory\> \<delay\> \<pos_classes\> \<pos_mapping\> (npz)
+  * \<pos_mapping\> can be downloaded from the link above
+  * \<pos_classes\>: for example aux_scripts/pos_classes/nouns; a file containing all POS tags that belong to a certain class (in this example NN singular common noun, NNS plural common noun, NNP singular proper noun, NNPS plural proper noun)
 * Decompose average gradient matrix with Singular Value Decomposition and print top 5 singular values and sum of all singular values (gradients should be averaged):
-  * python calculate_svs.py \<gradient_directory\> (\<pos_class\>)
+  * python calculate_svs.py \<gradient_directory\> (\<basename_pos_classes\>)
+  * if you want to calculate the singular values for a specific class, add the base name of the \<pos_classes\> file (e.g. nouns)
+* ... I plan to add more scripts in the future.
 
 # Run your own experiments
 
