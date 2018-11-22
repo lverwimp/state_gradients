@@ -50,6 +50,13 @@ You can compress them afterwards with the following command:
 
 This will create one .npz file, 'all.npz'. Afterwards, you can delete all .npy files.
 
+Embeddings of a trained model can be printed by added the following key - value pairs to the config file:
+* **save_embedding**: directory in which the embeddings should be saved; additionally a <save_embedding>.dict file will be created in which the words for which embeddings have been printed are written
+* **other_test**: file for which you want to write the embeddings, typically the training file
+
+Then the embeddings can be printed with the following command:
+* python main.py --config <config> --notrain --novalid (--device cpu)
+
 ## Analysis
 
 All scripts can be found in aux_scripts/.
