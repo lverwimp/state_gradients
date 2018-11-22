@@ -45,7 +45,10 @@ Make sure that you put the PTB files in the directory specified by **data_path**
 * Make config files for all time steps (make a copy and change value of **time_step**), and run the above command for every time step
 
 !!! Notice that you will need enough disk space, the gradient matrices can easily take up GB's. 
-You can compress them afterwards with the following command:
+
+## Postprocessing
+
+You can compress the gradient matrices with the following command:
 * aux_scripts/np2npz.py <gradient_directory>
 
 This will create one .npz file, 'all.npz'. Afterwards, you can delete all .npy files.
