@@ -209,6 +209,10 @@ class LMData(object):
 		Returns:
 			all_data: tuple of three lists : train_data, valid_data and test_data
 		'''
+		if 'pretrained_embeddings' in self.config:
+                	self.item_to_id, self.id_to_item = load_item_to_id(
+				os.path.join(self.config['pretrained_embeddings'], 'dict'), self.encoding)
+		
 		if 'read_vocab_from_file' in self.config:
 			# read vocabulary mapping from file
 			self.item_to_id, self.id_to_item = load_item_to_id(self.config['read_vocab_from_file'], self.encoding)
