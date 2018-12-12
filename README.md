@@ -46,6 +46,20 @@ Make sure that you put the PTB files in the directory specified by **data_path**
 
 !!! Notice that you will need enough disk space, the gradient matrices can easily take up GB's. 
 
+## Training a language model with pre-trained embeddings
+
+You can pre-train word embedding with word2vec and use those embeddings as input to your language model, instead of training the embedding weights jointly with the language model.
+
+Follow these steps:
+
+* Train word2vec embeddings with the [standard toolkit](https://code.google.com/archive/p/word2vec/) and save them in text format.
+* Make sure that you have a list of words for which you want to keep the embeddings. It is possible that you train the word2vec embeddings on a much larger dataset with a much larger vocabulary, so you only want to keep the words that are in the LM vocabulary.
+* Convert the output of the word2vec script to a format that we will use in our TF scripts:
+aux_scripts/convert_word2vec2tf.py <output_word2vec> <word_list> <new_emb_dir>
+* Next, you can train a LM by adding the following to your .config file:
+pretrained_embeddings <new_emb_dir>
+
+
 ## Postprocessing
 
 You can compress the gradient matrices with the following command:
