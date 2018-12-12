@@ -117,7 +117,14 @@ class lm(object):
 		'''
 
 		with tf.name_scope("embedding_lookup"):
-			self.embedding = tf.get_variable("embedding", [self.vocab_size, self.embedding_size], dtype=tf.float32)
+			if 'pretrained_embeddings' in self.config:
+				embedding_np = np.load(os.path.join(self.config['pretrained_embeddings'], 'all.npy'))
+				
+				self.embedding = tf.get_variable("embedding", [self.vocab_size, self.embedding_size],
+                                        initializer=tf.constant_initializer(embedding_np), dtype=self.data_type, trainable=False)
+
+			else:
+				self.embedding = tf.get_variable("embedding", [self.vocab_size, self.embedding_size], dtype=tf.float32)
 
 			# returns Tensor of size [batch_size x num_steps x size]
 			inputs = tf.nn.embedding_lookup(self.embedding, self.inputs, name="input_embeddings")
