@@ -18,19 +18,20 @@ Lyan Verwimp, Hugo Van hamme, Vincent Renkens and Patrick Wambacq. 2018. [State 
 
 ## Data
 
-The data that is used in the paper are Penn TreeBank and Wall Street Journal, normalized to make sure they contain the same vocabulary.
+The data that is used in the paper are Penn TreeBank and Wall Street Journal, normalized to make sure they contain the same vocabulary. WSJ is be obtained from LDC, the only difference with the version that we used is the fact that all numbers have been normalized to 'N'.
 
-You can download them here:
+You can download oru version of PTB here:
 
-* Penn TreeBank:
-  * [Training set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_train.txt)
-  * [Validation set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_valid.txt)
-  * [Test set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_test.txt)
-  * [Mapping from words to possible POS tags](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_words+pos.txt)
-* Wall Street Journal:
-  * [Training set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_train.txt)
-  * [Validation set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_valid.txt)
-  * [Test set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/wsj_test.txt)
+* [Training set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_train.txt)
+* [Validation set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_valid.txt)
+* [Test set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_test.txt)
+* [Mapping from words to possible POS tags](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_words+pos.txt)
+
+We run additional experiments on a synthetic dataset (not yet published):
+  
+* [Training set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/synth_train.txt)
+* [Validation set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/synth_valid.txt)
+* [Test set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/synth_test.txt)
     
 ## Training and calculating gradients
 
