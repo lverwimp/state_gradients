@@ -18,9 +18,9 @@ Lyan Verwimp, Hugo Van hamme, Vincent Renkens and Patrick Wambacq. 2018. [State 
 
 ## Data
 
-The data that is used in the paper are Penn TreeBank and Wall Street Journal, normalized to make sure they contain the same vocabulary. WSJ is be obtained from LDC, the only difference with the version that we used is the fact that all numbers have been normalized to 'N'.
+The data that is used in the paper are Penn TreeBank and Wall Street Journal, normalized to make sure they contain the same vocabulary. WSJ can be obtained from LDC, the only difference with the version that we used is the fact that all numbers have been normalized to 'N'.
 
-You can download oru version of PTB here:
+You can download our version of PTB here:
 
 * [Training set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_train.txt)
 * [Validation set](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/ptb_valid.txt)
