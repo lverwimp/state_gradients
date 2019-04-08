@@ -101,7 +101,10 @@ All scripts can be found in aux_scripts/.
   * python normalize_equal_variance.py \<emb_file\>
   * \<emb_file\> is the result of printing the embeddings for a trained model (see the [README](config/README.md) for config files)
   * this will create several files in the same directory as where \<emb_file\> can be found:
-    * \<emb_file\>
+    * \<emb_file\>_mean.npy: mean of the embeddings
+    * \<emb_file\>_covar.npy: covariance matrix of the embeddings
+    * \<emb_file\>_Z_norm_emb.npy: weights that can be used to normalize the embeddings
+    * \<emb_file\>_D_norm_emb.npy: weights that can be used to normalize the state gradients
 * ... I plan to add more scripts in the future.
 
 # Run your own experiments
