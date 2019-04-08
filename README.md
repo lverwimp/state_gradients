@@ -104,7 +104,8 @@ All scripts can be found in aux_scripts/.
     * \<emb_file\>_mean.npy: mean of the embeddings
     * \<emb_file\>_covar.npy: covariance matrix of the embeddings
     * \<emb_file\>_Z_norm_emb.npy: weights that can be used to normalize the embeddings
-    * \<emb_file\>_D_norm_emb.npy: weights that can be used to normalize the state gradients
+    * \<emb_file\>_D_norm_grad.npy: weights that can be used to normalize the state gradients
+  * By default, this script will also print some sanity checks. You can avoid this by setting SANITY_CHECK to False in the python script.
 * ... I plan to add more scripts in the future.
 
 # Run your own experiments
