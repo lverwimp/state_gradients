@@ -28,3 +28,8 @@ Additionally, change **batch_size** in the config file to 1 to avoid memory prob
 
 [ptb-norm-wsj_64e_256h_steps200_grad_timestep0.config](ptb-norm-wsj_64e_256h_steps200_grad_timestep0.config): Example of a config file to print gradients for the baseline model.
 
+Save the trained embedding weights (will be used to normalize the embedding space):
+* **save_embedding**: filename for the numpy file that contains the trained embeddings
+
+[ptb-norm-wsj_64e_256h_steps200_save-emb.config](ptb-norm-wsj_64e_256h_steps200_save-emb.config): Example of a config file to print embeddings for the baseline model.
+
