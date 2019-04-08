@@ -30,6 +30,7 @@ Additionally, change **batch_size** in the config file to 1 to avoid memory prob
 
 Save the trained embedding weights (will be used to normalize the embedding space):
 * **save_embedding**: filename for the numpy file that contains the trained embeddings
+* optionally: **save_dict**: filename to write the word to ID mapping
 
 [ptb-norm-wsj_64e_256h_steps200_save-emb.config](ptb-norm-wsj_64e_256h_steps200_save-emb.config): Example of a config file to print embeddings for the baseline model.
 
