@@ -175,13 +175,10 @@ class run_epoch(object):
 		Creates a dictionary containing the data that will be fed to the placeholders of the model.
 		'''
 
-		feed_dict = {self.model.inputs: x, self.model.targets: y}
-
-		for i, (c, h) in enumerate(self.model.initial_state):
-			feed_dict[self.model.initial_state[i]] = state[i]
+		feed_dict = {self.model.inputs: x, self.model.targets: y,
+					self.model.initial_state: state}
 
 		return feed_dict
-
 
 	def init_batching(self):
 		'''
