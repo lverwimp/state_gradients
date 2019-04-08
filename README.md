@@ -66,8 +66,8 @@ pretrained_embeddings <new_emb_dir>
 
 The pre-trained embeddings used in [2] can be downloaded here:
 
-* [Numpy file](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/all.npy)
-* [Dict file](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/dict)
+* [Numpy file](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/cbow_wsj_all.npy)
+* [Dict file](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/cbow_wsj_dict)
 
 ## Postprocessing
 
