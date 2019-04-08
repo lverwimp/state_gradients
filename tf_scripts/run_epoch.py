@@ -22,12 +22,8 @@ class run_epoch(object):
 		self.test = test
 		self.valid = valid
 
-		if 'save_embedding' in self.model.config:
-			self.dict = open('{0}.dict'.format(self.model.config['save_embedding']), 'w')
-			self.emb_counter = 0
-
-			if not os.path.exists(self.model.config['save_embedding']):
-				os.makedirs(self.model.config['save_embedding'])
+		if 'save_embedding' in self.model.config and not os.path.exists(os.path.dirname(self.model.config['save_embedding'])):
+			os.makedirs(os.path.dirname(self.model.config['save_embedding']))
 
 		if 'grad_interm' in self.model.config and self.valid:
 			self.counter_files = 0
@@ -59,9 +55,6 @@ class run_epoch(object):
 		# create fetches dictionary = what we want the graph to return
 		fetches = self.create_fetches()
 
-		if 'save_embedding' in self.model.config:
-			fetches, fetches_save = fetches
-
 		end_reached = False
 
 		# initialize batching
@@ -71,6 +64,12 @@ class run_epoch(object):
 		# start iterating over data
 		while True:
 			start_time = time.time()
+
+			if 'save_embedding' in self.model.config:
+				emb_matrix = tf.get_default_graph().get_tensor_by_name("Model/get_output/embedding:0")
+				emb_matrix = emb_matrix.eval(session=self.session)
+				np.save(self.model.config['save_embedding'], emb_matrix)
+				break
 
 			# get batch of data
 			x, y, end_reached = self.get_batch()
@@ -103,19 +102,15 @@ class run_epoch(object):
 
 			ppl = np.exp(costs / iters)
 
-			if 'save_embedding' in self.model.config and self.test:
-				vals_save = self.session.run(fetches_save, feed_dict)
-				# save embedding of current input word
-				np.save(os.path.join(self.model.config['save_embedding'], str(self.emb_counter)),
-						vals_save['embedding'][vals['input_sample'][0][0]])
-				self.emb_counter += 1
-
 			# if PRINT_INTERMEDIATE is True, ppl and time after each batch is printed
 			# can be changed to only printing after processing a certain amount of data
 			if PRINT_INTERMEDIATE and (iters % (self.model.num_steps*100) == 0):
 				print('ppl {0} ({1} seconds)'.format(ppl, time.time() - start_time))
 
-		return ppl
+		if 'save_embedding' in self.model.config:
+			return None
+		else:
+			return ppl
 
 	def get_init_state(self):
 		'''
@@ -159,11 +154,6 @@ class run_epoch(object):
 		# _train_op in training phase
 		if self.eval_op is not None:
 			fetches["eval_op"] = self.eval_op
-
-		if 'save_embedding' in self.model.config:
-			fetches_save = {"embedding": self.model.embedding}
-
-			fetches = (fetches, fetches_save)
 
 		if 'grad_interm' in self.model.config and self.valid:
 			fetches["all_grads"] = self.model.all_grads
