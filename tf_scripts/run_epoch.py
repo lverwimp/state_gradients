@@ -51,7 +51,8 @@ class run_epoch(object):
 											'mapping.txt'), 'w'))
 
 	def __call__(self):
-		costs = 0.0 # cross entropy based on normal (LM only) probabilitiessave_embedding
+		costs = 0.0 # cross entropy based on normal (LM only) probabilities
+		iters = 0
 		# state = initial state of the model
 		state = self.get_init_state()
 
@@ -129,7 +130,6 @@ class run_epoch(object):
 		'''
 		Initialize to state of previous time step.
 		'''
-save_embedding
 		state = vals["final_state"]
 
 		return state
