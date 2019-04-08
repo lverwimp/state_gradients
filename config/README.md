@@ -15,4 +15,7 @@ The config files used in the paper submitted to Computer Speech and Language are
   * [ptb-norm-wsj_GRU_64e_256h_steps200.config](ptb-norm-wsj_GRU_64e_256h_steps200.config): Train GRU with same hyperparameters as baseline LSTM.
   * [ptb-norm-wsj_RNN_64e_256h_steps200.config](ptb-norm-wsj_RNN_64e_256h_steps200.config): Train vanilla RNN with same hyperparameters as baseline LSTM.
 * WikiText:
+  * [wiki2_64e_256h_steps200.config](wiki2_64e_256h_steps200.config): Train baseline on Wiki-2 with same hyperparameters as PTB baseline.
+  * [wiki2_64e_512h_steps200.config](wiki2_64e_512h_steps200.config): Train LSTM with larger hidden size on Wiki-2, 512 instead of 256.
+  * [wiki103_64e_512h_steps200.config](wiki103_64e_512h_steps200.config): Train LSTM with size 512 on Wiki-103 (vocabulary is the same as for Wiki-2).
 
