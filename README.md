@@ -97,6 +97,11 @@ All scripts can be found in aux_scripts/.
 * Decompose average gradient matrix with Singular Value Decomposition and print top 5 singular values and sum of all singular values (gradients should be averaged):
   * python calculate_svs.py \<gradient_directory\> (\<basename_pos_classes\>)
   * if you want to calculate the singular values for a specific class, add the base name of the \<pos_classes\> file (e.g. nouns)
+* Normalization to make sure the embedding space has equal variance, to make sure that variance in the embedding space has no influence on the state gradients:
+  * python normalize_equal_variance.py \<emb_file\>
+  * \<emb_file\> is the result of printing the embeddings for a trained model (see the [README](config/README.md) for config files)
+  * this will create several files in the same directory as where \<emb_file\> can be found:
+    * \<emb_file\>
 * ... I plan to add more scripts in the future.
 
 # Run your own experiments
