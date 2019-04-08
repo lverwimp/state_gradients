@@ -226,7 +226,7 @@ class LMData(object):
 
 			# save the item_to_id mapping such that it can be re-used
 			if 'save_dict' in self.config:
-				save_item_to_id(self.item_to_id, '{0}.dict'.format(self.config['save_dict']), self.encoding)
+				save_item_to_id(self.item_to_id, self.config['save_dict'], self.encoding)
 
 		# make a label file to visualize the embeddings
 		# with the correct labels (= words instead of ids) in tensorboard
