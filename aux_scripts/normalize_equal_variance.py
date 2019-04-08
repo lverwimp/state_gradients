@@ -45,19 +45,17 @@ Z = Dinv = np.linalg.inv(D)
 Z_f = emb_f.replace('.npy','') + '_Z_norm_emb.npy'
 np.save(Z_f, Z)
 
-# sanity check: Z * D * D^T * Z^T should be equal to identity
 if SANITY_CHECK:
+    # sanity check: Z * D * D^T * Z^T should be equal to identity
     print('Z * D * D.T * Z.T (should be equal to I):')
     print(Z * D * D.T * Z.T)
 
-# sanity check: condition number of Z (= SV_max / SV_min) should not be too large
-# singular values of D: SV_max / SV_min should not be larger than 100
-if SANITY_CHECK:
+    # sanity check: condition number of Z (= SV_max / SV_min) should not be too large
+    # singular values of D: SV_max / SV_min should not be larger than 100
     _, sZ, _ = np.linalg.svd(Z)
     print('condition number of Z (should be < 100): {0}'.format(sZ[0] / sZ[sZ.shape[0]-1]))
 
-# sanity check: variance of Z * embeddings should be 1
-if SANITY_CHECK:
+    # sanity check: variance of Z * embeddings should be 1
     norm_emb = np.zeros((all_emb.shape[0], all_emb.shape[1]))
     for i in range(all_emb.shape[0]):
         norm_emb[i] = np.matmul(Z, all_emb[i])
