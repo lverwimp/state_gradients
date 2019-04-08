@@ -116,6 +116,10 @@ All scripts can be found in aux_scripts/.
     * \<pos_file\>: mapping from words to POS tags, can be downloaded above
     * \<name\>: name to save the model
   * Generate average embedding for specific POS: use option --avg_emb
+* Calculate average memory for a specific difference vector:
+  * python relative_memory.py \<diff_vector\> \<grad_dir\> \<normalization_weights\>
+  * \<diff_vector\>: difference between average embedding for a specific POS and average embedding for another POS, that both can be generated with help of pos_classifier_sklearn.py
+  * \<normalization_weights\>: output of normalize_equal_variance.py, \<emb_file\>_Z_norm_emb.npy
 * ... I plan to add more scripts in the future.
 
 # Run your own experiments
