@@ -107,6 +107,15 @@ All scripts can be found in aux_scripts/.
   * python calculate_svs.py \<gradient_directory\> \<normalization_weights\> (\<basename_pos_classes\>)
   * \<normalization_weights\>: output of normalize_equal_variance.py, \<emb_file\>_D_norm_grad.npy
   * if you want to calculate the singular values for a specific class, add the base name of the \<pos_classes\> file (e.g. nouns)
+* Train POS classifier on the embeddings and/or generate average embedding for a specific POS:
+  * python pos_classifier_sklearn.py 
+  * run with --help to get a full overview of the options
+  * Train classifier: python pos_classifier_sklearn.py \<emb_file\> \<dict_emb\> \<pos_file\> \<name\>
+    * \<emb_file\>: numpy containing word embeddings, output of TF scripts with **save_embedding** in config file e.g. [config/ptb-norm-wsj_64e_256h_steps200_save-emb.config](config/ptb-norm-wsj_64e_256h_steps200_save-emb.config)
+    * \<dict_emb\>: text file containing word to ID mapping for the embeddings, output of TF scripts with **save_dict** in config file e.g. [config/ptb-norm-wsj_64e_256h_steps200_save-emb.config](config/ptb-norm-wsj_64e_256h_steps200_save-emb.config)
+    * \<pos_file\>: mapping from words to POS tags, can be downloaded above
+    * \<name\>: name to save the model
+  * Generate average embedding for specific POS: use option --avg_emb
 * ... I plan to add more scripts in the future.
 
 # Run your own experiments
