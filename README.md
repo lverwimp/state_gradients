@@ -40,9 +40,9 @@ All scripts can be found in tf_scripts/.
 Make sure that you put the PTB files in the directory specified by **data_path** in the config file.
 
 * Train the baseline language model with the following command:
-  * python main.py --config ../config/ptb-norm-wsj_64e_256h_steps50.config
+  * python main.py --config ../config/ptb-norm-wsj_64e_256h_steps200.config
 * Print gradients for time step 0 (can be done on CPU):
-  * python main.py --config ../config/ptb-norm-wsj_64e_256h_steps50_grad_timestep0.config --notrain --notest (--device cpu)
+  * python main.py --config ../config/ptb-norm-wsj_64e_256h_steps200_grad_timestep0.config --notrain --notest (--device cpu)
 * Make config files for all time steps (make a copy and change value of **time_step**), and run the above command for every time step
 
 !!! Notice that you will need enough disk space, the gradient matrices can easily take up GB's. 
