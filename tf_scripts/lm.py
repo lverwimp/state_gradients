@@ -60,19 +60,28 @@ class lm(object):
 		'''
 		Creates LSTM graph.
 		'''
-		with tf.variable_scope("lstm"):
+		with tf.variable_scope("rnn"):
 
-			self.cell = tf.contrib.rnn.MultiRNNCell(
-					[tf.contrib.rnn.BasicLSTMCell(self.size, forget_bias=self.config['forget_bias'],
-					state_is_tuple=True, reuse=self.reuse) for _ in range(self.config['num_layers'])],
-					state_is_tuple=True)
+			if self.config['basic_cell'] == 'LSTM':
+				self.cell = tf.contrib.rnn.MultiRNNCell(
+						[tf.contrib.rnn.BasicLSTMCell(self.size, forget_bias=self.config['forget_bias'],
+						state_is_tuple=True, reuse=self.reuse)
+						for _ in range(self.config['num_layers'])], state_is_tuple=True)
+			elif self.config['basic_cell'] == 'GRU':
+				self.cell = tf.contrib.rnn.MultiRNNCell(
+						[tf.contrib.rnn.GRUCell(self.size, reuse=self.reuse)
+						for _ in range(self.config['num_layers'])], state_is_tuple=True)
+			elif self.config['basic_cell'] == 'RNN':
+				self.cell = tf.contrib.rnn.MultiRNNCell(
+						[tf.contrib.rnn.BasicRNNCell(self.size, reuse=self.reuse)
+						for _ in range(self.config['num_layers'])], state_is_tuple=True)
+			else:
+				raise IOError("'basic_cell' should be equal to 'LSTM', 'GRU' or 'RNN'.")
 
 			if 'grad_interm' in self.config:
 					# only for an LSTM cell we need a wrapper to retrieve the intermediate cell states
 					# for a vanilla RNN or GRU, the output equals the (only) hidden state
-					if 'basic_cell' in self.config and \
-							self.config['basic_cell'].startswith('LSTM') and \
-							self.config['grad_interm'] == 'cell':
+					if self.config['basic_cell'] == 'LSTM' and self.config['grad_interm'] == 'cell':
 						self.cell = IntermStateWrapper.IntermStateWrapper(self.cell, to_return='cell')
 
 			if is_training and self.config['dropout'] < 1:
@@ -119,7 +128,7 @@ class lm(object):
 		with tf.name_scope("embedding_lookup"):
 			if 'pretrained_embeddings' in self.config:
 				embedding_np = np.load(os.path.join(self.config['pretrained_embeddings'], 'all.npy'))
-				
+
 				self.embedding = tf.get_variable("embedding", [self.vocab_size, self.embedding_size],
                                         initializer=tf.constant_initializer(embedding_np), dtype=self.data_type, trainable=False)
 
