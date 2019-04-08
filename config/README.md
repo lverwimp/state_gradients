@@ -2,7 +2,7 @@
 
 The config files used in the Interspeech paper is the following:
 
-ptb-norm-wsj_64e_256h_steps50.config
+[ptb-norm-wsj_64e_256h_steps50.config](ptb-norm-wsj_64e_256h_steps50.config)
 
 This trains a baseline PTB model with sequence length = 50.
 
