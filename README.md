@@ -6,7 +6,11 @@ It is both a simplified version of [my other GitHub repo](https://github.com/lve
 
 More information can be found in this paper:
 
-Lyan Verwimp, Hugo Van hamme, Vincent Renkens and Patrick Wambacq. 2018. [State Gradients for RNN Memory Analysis](https://www.researchgate.net/publication/325818651_State_Gradients_for_RNN_Memory_Analysis). In: *Proceedings Interspeech*. Hyderabad, India, 2-6 September 2018, pp. 1467-1471.
+[1] Lyan Verwimp, Hugo Van hamme, Vincent Renkens and Patrick Wambacq. 2018. [State Gradients for RNN Memory Analysis](https://www.researchgate.net/publication/325818651_State_Gradients_for_RNN_Memory_Analysis). In: *Proceedings Interspeech*. Hyderabad, India, 2-6 September 2018, pp. 1467-1471.
+
+We also submitted a paper to Computer Speech and Language with follow-up experiments:
+
+[2] Lyan Verwimp, Hugo Van hamme and Patrick Wambacq. State Gradients for Analyzing Memory in LSTM Language Models. Submitted to *Computer Speech and Language* on April 3, 2019.
 
 # Installation and setup
 
@@ -60,6 +64,10 @@ aux_scripts/convert_word2vec2tf.py <output_word2vec> <word_list> <new_emb_dir>
 * Next, you can train a LM by adding the following to your .config file:
 pretrained_embeddings <new_emb_dir>
 
+The pre-trained embeddings used in [2] can be downloaded here:
+
+* [Numpy file](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/all.npy)
+* [Dict file](http://homes.esat.kuleuven.be/~lverwimp/data_state_gradients/dict)
 
 ## Postprocessing
 
