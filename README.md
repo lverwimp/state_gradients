@@ -87,40 +87,56 @@ Then the embeddings can be printed with the following command:
 
 All scripts can be found in aux_scripts/.
 
-* Average gradient matrices over all time steps for specific delay:
-  * python avg_gradient_matrix.py \<gradient_directory\> \<delay\> (npz)
-  * add 'npz' if the matrices have been compressed
-* Average over a specific class of words:
-  * python avg_gradient_matrix.py \<gradient_directory\> \<delay\> \<pos_classes\> \<pos_mapping\> (npz)
-  * \<pos_mapping\> can be downloaded from the link above
-  * \<pos_classes\>: for example aux_scripts/pos_classes/nouns; a file containing all POS tags that belong to a certain class (in this example NN singular common noun, NNS plural common noun, NNP singular proper noun, NNPS plural proper noun)
-* Normalization to make sure the embedding space has equal variance, to make sure that variance in the embedding space has no influence on the state gradients:
-  * python normalize_equal_variance.py \<emb_file\>
-  * \<emb_file\> is the result of printing the embeddings for a trained model (see the [README](config/README.md) for config files)
-  * this will create several files in the same directory as where \<emb_file\> can be found:
-    * \<emb_file\>_mean.npy: mean of the embeddings
-    * \<emb_file\>_covar.npy: covariance matrix of the embeddings
-    * \<emb_file\>_Z_norm_emb.npy: weights that can be used to normalize the embeddings
-    * \<emb_file\>_D_norm_grad.npy: weights that can be used to normalize the state gradients
-  * By default, this script will also print some sanity checks. You can avoid this by setting SANITY_CHECK to False in the python script.
-* Decompose average gradient matrix with Singular Value Decomposition and print top 5 singular values and sum of all singular values (gradients should be averaged):
-  * python calculate_svs.py \<gradient_directory\> \<normalization_weights\> (\<basename_pos_classes\>)
-  * \<normalization_weights\>: output of normalize_equal_variance.py, \<emb_file\>_D_norm_grad.npy
-  * if you want to calculate the singular values for a specific class, add the base name of the \<pos_classes\> file (e.g. nouns)
-* Train POS classifier on the embeddings and/or generate average embedding for a specific POS:
-  * python pos_classifier_sklearn.py 
-  * run with --help to get a full overview of the options
-  * Train classifier: python pos_classifier_sklearn.py \<emb_file\> \<dict_emb\> \<pos_file\> \<name\>
-    * \<emb_file\>: numpy containing word embeddings, output of TF scripts with **save_embedding** in config file e.g. [config/ptb-norm-wsj_64e_256h_steps200_save-emb.config](config/ptb-norm-wsj_64e_256h_steps200_save-emb.config)
-    * \<dict_emb\>: text file containing word to ID mapping for the embeddings, output of TF scripts with **save_dict** in config file e.g. [config/ptb-norm-wsj_64e_256h_steps200_save-emb.config](config/ptb-norm-wsj_64e_256h_steps200_save-emb.config)
-    * \<pos_file\>: mapping from words to POS tags, can be downloaded above
-    * \<name\>: name to save the model
-  * Generate average embedding for specific POS: use option --avg_emb
-* Calculate average memory for a specific difference vector:
-  * python relative_memory.py \<diff_vector\> \<grad_dir\> \<normalization_weights\>
-  * \<diff_vector\>: difference between average embedding for a specific POS and average embedding for another POS, that both can be generated with help of pos_classifier_sklearn.py
-  * \<normalization_weights\>: output of normalize_equal_variance.py, \<emb_file\>_Z_norm_emb.npy
-* ... I plan to add more scripts in the future.
+Average gradient matrices over all time steps for specific delay:
+
+python avg_gradient_matrix.py \<gradient_directory\> \<delay\> (npz)
+* add 'npz' if the matrices have been compressed
+
+Average over a specific class of words:
+
+python avg_gradient_matrix.py \<gradient_directory\> \<delay\> \<pos_classes\> \<pos_mapping\> (npz)
+* \<pos_mapping\> can be downloaded from the link above
+* \<pos_classes\>: for example aux_scripts/pos_classes/nouns; a file containing all POS tags that belong to a certain class (in this example NN singular common noun, NNS plural common noun, NNP singular proper noun, NNPS plural proper noun)
+
+Normalization to make sure the embedding space has equal variance, to make sure that variance in the embedding space has no influence on the state gradients:
+
+python normalize_equal_variance.py \<emb_file\>
+* \<emb_file\> is the result of printing the embeddings for a trained model (see the [README](config/README.md) for config files)
+* this will create several files in the same directory as where \<emb_file\> can be found:
+  * \<emb_file\>_mean.npy: mean of the embeddings
+  * \<emb_file\>_covar.npy: covariance matrix of the embeddings
+  * \<emb_file\>_Z_norm_emb.npy: weights that can be used to normalize the embeddings
+  * \<emb_file\>_D_norm_grad.npy: weights that can be used to normalize the state gradients
+* By default, this script will also print some sanity checks. You can avoid this by setting SANITY_CHECK to False in the python script.
+
+Decompose average gradient matrix with Singular Value Decomposition and print top 5 singular values and sum of all singular values (gradients should be averaged):
+
+python calculate_svs.py \<gradient_directory\> \<normalization_weights_gradients\> (\<basename_pos_classes\>)
+* \<normalization_weights_gradients\>: output of normalize_equal_variance.py, \<emb_file\>_D_norm_grad.npy
+* if you want to calculate the singular values for a specific class, add the base name of the \<pos_classes\> file (e.g. nouns)
+
+Train POS classifier on the embeddings and/or generate average embedding for a specific POS:
+
+python pos_classifier_sklearn.py 
+* run with --help to get a full overview of the options
+* Train classifier: python pos_classifier_sklearn.py \<emb_file\> \<dict_emb\> \<pos_file\> \<name\>
+  * \<emb_file\>: numpy containing word embeddings, output of TF scripts with **save_embedding** in config file e.g. [config/ptb-norm-wsj_64e_256h_steps200_save-emb.config](config/ptb-norm-wsj_64e_256h_steps200_save-emb.config)
+  * \<dict_emb\>: text file containing word to ID mapping for the embeddings, output of TF scripts with **save_dict** in config file e.g. [config/ptb-norm-wsj_64e_256h_steps200_save-emb.config](config/ptb-norm-wsj_64e_256h_steps200_save-emb.config)
+  * \<pos_file\>: mapping from words to POS tags, can be downloaded above
+  * \<name\>: name to save the model
+* Generate average embedding for specific POS: use option --avg_emb
+
+Calculate average memory for a specific difference vector:
+
+python relative_memory.py \<diff_vector\> \<grad_dir\> \<normalization_weights_embeddings\> (\<pos\>)
+* \<diff_vector\>: difference between average embedding for a specific POS and average embedding for another POS, that both can be generated with help of pos_classifier_sklearn.py
+* \<normalization_weights_embeddings\>: output of normalize_equal_variance.py, \<emb_file\>_Z_norm_emb.npy
+* \<pos\>: optional, if you want to compare with the average over specific POS only
+
+Calculate cosine similarity between difference vector and subspace spanned by the first x columns of V (= result of SVD of gradient matrix):
+
+python cos_subspace_diff_vector.py \<diff_vector\> \<grad_dir\> \<threshold\> \<normalization_weights_embeddings\> \<normalization_weights_gradients\> (\<pos\>)
+* \<threshold\>: x, number of columns of V
 
 # Run your own experiments
 
